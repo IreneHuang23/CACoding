@@ -7,6 +7,7 @@ import use_case.signup.SignupUserDataAccessInterface;
 
 import java.io.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
@@ -85,6 +86,13 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
         }
     }
 
+    public ArrayList<String> allName() {
+        ArrayList<String> names = new ArrayList<>();
+        for (User u: accounts.values()) {
+            names.add(u.getName());
+        } return names;
+    }
+
 
     /**
      * Return whether a user exists with username identifier.
@@ -94,6 +102,15 @@ public class FileUserDataAccessObject implements SignupUserDataAccessInterface, 
     @Override
     public boolean existsByName(String identifier) {
         return accounts.containsKey(identifier);
+    }
+
+    public ArrayList<User> ClearAllUser() {
+        ArrayList<User> names = new ArrayList<>();
+        for (User u: accounts.values()) {
+            names.add(u);
+        }
+        accounts.clear();
+        return names;
     }
 
 }
